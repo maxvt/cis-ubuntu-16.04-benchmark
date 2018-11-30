@@ -3,12 +3,12 @@
 
 title '3.7 Ensure wireless interfaces are disabled (Not Scored)'
 
-control 'cis-ubuntu-14.04-3.7' do
+control 'cis-ubuntu-16.04-3.7' do
   impact  1.0
   title   '3.7 Ensure wireless interfaces are disabled (Not Scored)'
   desc    'Wireless networking is used when wired networks are unavailable. Ubuntu contains a wireless tool kit to allow system administrators to configure and use wireless networks.'
 
-  tag cis: 'ubuntu-14.04:3.7'
+  tag cis: 'ubuntu-16.04:3.7'
 
   only_if do
     package('wireless-tools').installed?
