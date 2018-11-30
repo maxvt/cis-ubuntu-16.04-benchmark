@@ -3,12 +3,12 @@
 
 title '1.6 Mandatory Access Control'
 
-control 'cis-ubuntu-14.04-1.6.1.1' do
+control 'cis-ubuntu-16.04-1.6.1.1' do
   impact  1.0
   title   '1.6.1.1 Ensure SELinux is not disabled in bootloader configuration (Scored)'
   desc    'Configure SELINUX to be enabled at boot time and verify that it has not been overwritten by the grub boot parameters.'
 
-  tag cis: 'ubuntu-14.04:1.6.1.1'
+  tag cis: 'ubuntu-16.04:1.6.1.1'
 
   only_if do
     package('selinux').installed?
@@ -19,12 +19,12 @@ control 'cis-ubuntu-14.04-1.6.1.1' do
   end
 end
 
-control 'cis-ubuntu-14.04-1.6.1.2' do
+control 'cis-ubuntu-16.04-1.6.1.2' do
   impact  1.0
   title   '1.6.1.2 Ensure the SELinux state is enforcing (Scored)'
   desc    'SELinux must be enabled at boot time in to ensure that the controls it provides are in effect at all times.'
 
-  tag cis: 'ubuntu-14.04:1.6.1.2'
+  tag cis: 'ubuntu-16.04:1.6.1.2'
 
   only_if do
     package('selinux').installed?
@@ -38,12 +38,12 @@ control 'cis-ubuntu-14.04-1.6.1.2' do
   end
 end
 
-control 'cis-ubuntu-14.04-1.6.1.3' do
+control 'cis-ubuntu-16.04-1.6.1.3' do
   impact  1.0
   title   '1.6.1.3 Ensure SELinux policy is configured (Scored)'
   desc    'Configure SELinux to meet or exceed the default targeted policy, which constrains daemons and system software only.'
 
-  tag cis: 'ubuntu-14.04:1.6.1.3'
+  tag cis: 'ubuntu-16.04:1.6.1.3'
 
   only_if do
     package('selinux').installed?
@@ -54,12 +54,12 @@ control 'cis-ubuntu-14.04-1.6.1.3' do
   end
 end
 
-control 'cis-ubuntu-14.04-1.6.1.4' do
+control 'cis-ubuntu-16.04-1.6.1.4' do
   impact  1.0
   title   '1.6.1.4 Ensure no unconfined daemons exist (Scored)'
   desc    'Daemons that are not defined in SELinux policy will inherit the security context of their parent process.'
 
-  tag cis: 'ubuntu-14.04:1.6.1.4'
+  tag cis: 'ubuntu-16.04:1.6.1.4'
 
   only_if do
     package('selinux').installed?
@@ -70,12 +70,12 @@ control 'cis-ubuntu-14.04-1.6.1.4' do
   end
 end
 
-control 'cis-ubuntu-14.04-1.6.2.1' do
+control 'cis-ubuntu-16.04-1.6.2.1' do
   impact  1.0
   title   '1.6.2.1 Ensure AppArmor is not disabled in bootloader configuration (Scored)'
   desc    'Configure AppArmor to be enabled at boot time and verify that it has not been overwritten by the bootloader boot parameters.'
 
-  tag cis: 'ubuntu-14.04:1.6.2.1'
+  tag cis: 'ubuntu-16.04:1.6.2.1'
 
   only_if do
     package('apparmor').installed?
@@ -86,12 +86,12 @@ control 'cis-ubuntu-14.04-1.6.2.1' do
   end
 end
 
-control 'cis-ubuntu-14.04-1.6.2.2' do
+control 'cis-ubuntu-16.04-1.6.2.2' do
   impact  1.0
   title   '1.6.2.2 Ensure all AppArmor Profiles are enforcing (Scored)'
   desc    'AppArmor profiles define what resources applications are able to access.'
 
-  tag cis: 'ubuntu-14.04:1.6.2.2'
+  tag cis: 'ubuntu-16.04:1.6.2.2'
 
   only_if do
     package('apparmor').installed?
@@ -104,12 +104,12 @@ control 'cis-ubuntu-14.04-1.6.2.2' do
   end
 end
 
-control 'cis-ubuntu-14.04-1.6.3' do
+control 'cis-ubuntu-16.04-1.6.3' do
   impact  1.0
   title   '1.6.3 Ensure SELinux or AppArmor are installed (Not Scored)'
   desc    'SELinux and AppArmor provide Mandatory Access Controls.'
 
-  tag cis: 'ubuntu-14.04:1.6.3'
+  tag cis: 'ubuntu-16.04:1.6.3'
 
   describe.one do
     describe package('selinux') do
