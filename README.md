@@ -1,14 +1,14 @@
-# CIS Ubuntu Linux 14.04 LTS Benchmark v2 InSpec Profile
+# CIS Ubuntu Linux 16.04 LTS Benchmark v1.1.0 InSpec Profile
 
 This example shows the implementation of an InSpec profile.
 ## Description
 
-This profile implements the [CIS Ubuntu Linux 14.04 LTS Benchmark (v2.0.0)](https://www.cisecurity.org/benchmark/ubuntu_linux/)
+This profile implements the [CIS Ubuntu Linux 16.04 LTS Benchmark (v1.1.0)](https://www.cisecurity.org/benchmark/ubuntu_linux/)
 
 ## How to run this inspec exec remotely
 
 ```
-cd cis-ubuntu-14.04-benchmark
+cd cis-ubuntu-16.04-benchmark
 inspec exec ./ -t $SSHCONN -i $SSHKEY --sudo --format=progress
 
 ```
