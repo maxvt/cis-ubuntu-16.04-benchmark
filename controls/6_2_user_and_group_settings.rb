@@ -3,12 +3,12 @@
 
 title '6.2 User and Group Settings'
 
-control 'cis-ubuntu-14.04-6.2.1' do
+control 'cis-ubuntu-16.04-6.2.1' do
   impact  1.0
   title   '6.2.1 Ensure password fields are not empty (Scored)'
   desc    'An account with an empty password field means that anybody may log in as that user without providing a password. All accounts must have passwords or be locked to prevent the account from being used by an unauthorized user.'
 
-  tag cis: 'ubuntu-14.04:6.2.1'
+  tag cis: 'ubuntu-16.04:6.2.1'
 
   cmd = %q{cat /etc/shadow | awk -F: '($2 == "" ) { print $1 " does not have a password "}'}
   describe command(cmd) do
@@ -16,60 +16,60 @@ control 'cis-ubuntu-14.04-6.2.1' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.2' do
+control 'cis-ubuntu-16.04-6.2.2' do
   impact  1.0
   title   '6.2.2 Ensure no legacy "+" entries exist in /etc/passwd (Scored)'
   desc    'The character + in various files used to be markers for systems to insert data from NIS maps at a certain point in a system configuration file. These entries are no longer required on most systems, but may exist in files that have been imported from other platforms.'
 
-  tag cis: 'ubuntu-14.04:6.2.2'
+  tag cis: 'ubuntu-16.04:6.2.2'
 
   describe file('/etc/passwd') do
     its(:content) { should_not match '^\+:' }
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.3' do
+control 'cis-ubuntu-16.04-6.2.3' do
   impact  1.0
   title   '6.2.3 Ensure no legacy "+" entries exist in /etc/shadow (Scored)'
   desc    'The character + in various files used to be markers for systems to insert data from NIS maps at a certain point in a system configuration file. These entries are no longer required on most systems, but may exist in files that have been imported from other platforms.'
 
-  tag cis: 'ubuntu-14.04:6.2.3'
+  tag cis: 'ubuntu-16.04:6.2.3'
 
   describe file('/etc/shadow') do
     its(:content) { should_not match '^\+:' }
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.4' do
+control 'cis-ubuntu-16.04-6.2.4' do
   impact  1.0
   title   '6.2.4 Ensure no legacy "+" entries exist in /etc/group (Scored)'
   desc    'The character + in various files used to be markers for systems to insert data from NIS maps at a certain point in a system configuration file. These entries are no longer required on most systems, but may exist in files that have been imported from other platforms.'
 
-  tag cis: 'ubuntu-14.04:6.2.4'
+  tag cis: 'ubuntu-16.04:6.2.4'
 
   describe file('/etc/group') do
     its(:content) { should_not match '^\+:' }
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.5' do
+control 'cis-ubuntu-16.04-6.2.5' do
   impact  1.0
   title   '6.2.5 Ensure root is the only UID 0 account (Scored)'
   desc    'Any account with UID 0 has superuser privileges on the system. This access must be limited to only the default root account and only from the system console. Administrative access must be through an unprivileged account using an approved mechanism as noted in Item 5.6 Ensure access to the su command is restricted.'
 
-  tag cis: 'ubuntu-14.04:6.2.5'
+  tag cis: 'ubuntu-16.04:6.2.5'
 
   describe command("cat /etc/passwd | awk -F: '($3 == 0) { print $1 }'") do
     its(:stdout) { should eq "root\n" }
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.6' do
+control 'cis-ubuntu-16.04-6.2.6' do
   impact  1.0
   title   '6.2.6 Ensure root PATH Integrity (Scored)'
   desc    'The root user can execute any command on the system and could be fooled into executing programs unintentionally if the PATH is not set correctly.'
 
-  tag cis: 'ubuntu-14.04:6.2.6'
+  tag cis: 'ubuntu-16.04:6.2.6'
 
   cmd = inspec.profile.file('root_path_integrity_audit.sh')
   describe bash(cmd) do
@@ -78,12 +78,12 @@ control 'cis-ubuntu-14.04-6.2.6' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.7' do
+control 'cis-ubuntu-16.04-6.2.7' do
   impact  1.0
   title   "6.2.7 Ensure all users' home directories exist (Scored)"
   desc    'Users can be defined in /etc/passwd without a home directory or with a home directory that does not actually exist. If the user\'s home directory does not exist or is unassigned, the user will be placed in "/" and will not be able to write any files or have local environment variables set.'
 
-  tag cis: 'ubuntu-14.04:6.2.7'
+  tag cis: 'ubuntu-16.04:6.2.7'
 
   cmd = inspec.profile.file('home_dirs_audit.sh')
   describe bash(cmd) do
@@ -92,12 +92,12 @@ control 'cis-ubuntu-14.04-6.2.7' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.8' do
+control 'cis-ubuntu-16.04-6.2.8' do
   impact  1.0
   title   "6.2.8 Ensure users' home directories permissions are 750 or more restrictive (Scored)"
   desc    "While the system administrator can establish secure permissions for users' home directories, the users can easily override these. Group or world-writable user home directories may enable malicious users to steal or modify other users' data or to gain another user's system privileges."
 
-  tag cis: 'ubuntu-14.04:6.2.8'
+  tag cis: 'ubuntu-16.04:6.2.8'
 
   cmd = inspec.profile.file('home_dirs_perms_audit.sh')
   describe bash(cmd) do
@@ -106,12 +106,12 @@ control 'cis-ubuntu-14.04-6.2.8' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.9' do
+control 'cis-ubuntu-16.04-6.2.9' do
   impact  1.0
   title   '6.2.9 Ensure users own their home directories (Scored)'
   desc    'The user home directory is space defined for the particular user to set local environment variables and to store personal files. Since the user is accountable for files stored in the user home directory, the user must be the owner of the directory.'
 
-  tag cis: 'ubuntu-14.04:6.2.9'
+  tag cis: 'ubuntu-16.04:6.2.9'
 
   cmd = inspec.profile.file('home_dirs_owner_audit.sh')
   describe bash(cmd) do
@@ -120,12 +120,12 @@ control 'cis-ubuntu-14.04-6.2.9' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.10' do
+control 'cis-ubuntu-16.04-6.2.10' do
   impact  1.0
   title   "6.2.10 Ensure users' dot files are not group or world writable (Scored)"
   desc    "While the system administrator can establish secure permissions for users' \"dot\" files, the users can easily override these. Group or world-writable user configuration files may enable malicious users to steal or modify other users' data or to gain another user's system privileges."
 
-  tag cis: 'ubuntu-14.04:6.2.10'
+  tag cis: 'ubuntu-16.04:6.2.10'
 
   cmd = inspec.profile.file('user_dotfiles_audit.sh')
   describe bash(cmd) do
@@ -134,12 +134,12 @@ control 'cis-ubuntu-14.04-6.2.10' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.11' do
+control 'cis-ubuntu-16.04-6.2.11' do
   impact  1.0
   title   '6.2.11 Ensure no users have .forward files (Scored)'
   desc    "The .forward file specifies an email address to forward the user's mail to. Use of the .forward file poses a security risk in that sensitive data may be inadvertently transferred outside the organization. The .forward file also poses a risk as it can be used to execute commands that may perform unintended actions."
 
-  tag cis: 'ubuntu-14.04:6.2.11'
+  tag cis: 'ubuntu-16.04:6.2.11'
 
   cmd = inspec.profile.file('user_dot_forward_file_audit.sh')
   describe bash(cmd) do
@@ -148,12 +148,12 @@ control 'cis-ubuntu-14.04-6.2.11' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.12' do
+control 'cis-ubuntu-16.04-6.2.12' do
   impact  1.0
   title   '6.2.12 Ensure no users have .netrc files (Scored)'
   desc    'The .netrc file contains data for logging into a remote host for file transfers via FTP. The .netrc file presents a significant security risk since it stores passwords in unencrypted form. Even if FTP is disabled, user accounts may have brought over .netrc files from other systems which could pose a risk to those systems.'
 
-  tag cis: 'ubuntu-14.04:6.2.12'
+  tag cis: 'ubuntu-16.04:6.2.12'
 
   cmd = inspec.profile.file('user_dot_netrc_file_audit.sh')
   describe bash(cmd) do
@@ -162,12 +162,12 @@ control 'cis-ubuntu-14.04-6.2.12' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.13' do
+control 'cis-ubuntu-16.04-6.2.13' do
   impact  1.0
   title   "6.2.13 Ensure users' .netrc Files are not group or world accessible (Scored)"
   desc    "While the system administrator can establish secure permissions for users' .netrc files, the users can easily override these. .netrc files may contain unencrypted passwords that may be used to attack other systems. The .netrc file presents a significant security risk since it stores passwords in unencrypted form. Even if FTP is disabled, user accounts may have brought over .netrc files from other systems which could pose a risk to those systems."
 
-  tag cis: 'ubuntu-14.04:6.2.13'
+  tag cis: 'ubuntu-16.04:6.2.13'
 
   cmd = inspec.profile.file('user_dot_netrc_file_perms_audit.sh')
   describe bash(cmd) do
@@ -176,12 +176,12 @@ control 'cis-ubuntu-14.04-6.2.13' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.14' do
+control 'cis-ubuntu-16.04-6.2.14' do
   impact  1.0
   title   '6.2.14 Ensure no users have .rhosts files (Scored)'
   desc    'While no .rhosts files are shipped by default, users can easily create them. This action is only meaningful if .rhosts support is permitted in the file /etc/pam.conf. Even though the .rhosts files are ineffective if support is disabled in /etc/pam.conf, they may have been brought over from other systems and could contain information useful to an attacker for those other systems.'
 
-  tag cis: 'ubuntu-14.04:6.2.14'
+  tag cis: 'ubuntu-16.04:6.2.14'
 
   cmd = inspec.profile.file('user_dot_rhosts_file_audit.sh')
   describe bash(cmd) do
@@ -190,12 +190,12 @@ control 'cis-ubuntu-14.04-6.2.14' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.15' do
+control 'cis-ubuntu-16.04-6.2.15' do
   impact  1.0
   title   '6.2.15 Ensure all groups in /etc/passwd exist in /etc/group (Scored)'
   desc    'Over time, system administration errors and changes can lead to groups being defined in /etc/passwd but not in /etc/group. Groups defined in the /etc/passwd file but not in the /etc/group file pose a threat to system security since group permissions are not properly managed.'
 
-  tag cis: 'ubuntu-14.04:6.2.15'
+  tag cis: 'ubuntu-16.04:6.2.15'
 
   cmd = inspec.profile.file('user_groups_audit.sh')
   describe bash(cmd) do
@@ -204,12 +204,12 @@ control 'cis-ubuntu-14.04-6.2.15' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.16' do
+control 'cis-ubuntu-16.04-6.2.16' do
   impact  1.0
   title   '6.2.16 Ensure no duplicate UIDs exist (Scored)'
   desc    'Although the useradd program will not let you create a duplicate User ID (UID), it is possible for an administrator to manually edit the /etc/passwd file and change the UID field. Users must be assigned unique UIDs for accountability and to ensure appropriate access protections.'
 
-  tag cis: 'ubuntu-14.04:6.2.16'
+  tag cis: 'ubuntu-16.04:6.2.16'
 
   cmd = inspec.profile.file('duplicate_uids_audit.sh')
   describe bash(cmd) do
@@ -218,12 +218,12 @@ control 'cis-ubuntu-14.04-6.2.16' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.17' do
+control 'cis-ubuntu-16.04-6.2.17' do
   impact  1.0
   title   '6.2.17 Ensure no duplicate GIDs exist (Scored)'
   desc    'Although the groupadd program will not let you create a duplicate Group ID (GID), it is possible for an administrator to manually edit the /etc/group file and change the GID field. User groups must be assigned unique GIDs for accountability and to ensure appropriate access protections.'
 
-  tag cis: 'ubuntu-14.04:6.2.17'
+  tag cis: 'ubuntu-16.04:6.2.17'
 
   cmd = inspec.profile.file('duplicate_gids_audit.sh')
   describe bash(cmd) do
@@ -232,12 +232,12 @@ control 'cis-ubuntu-14.04-6.2.17' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.18' do
+control 'cis-ubuntu-16.04-6.2.18' do
   impact  1.0
   title   '6.2.18 Ensure no duplicate user names exist (Scored)'
   desc    'Although the useradd program will not let you create a duplicate user name, it is possible for an administrator to manually edit the /etc/passwd file and change the user name. If a user is assigned a duplicate user name, it will create and have access to files with the first UID for that username in /etc/passwd.'
 
-  tag cis: 'ubuntu-14.04:6.2.18'
+  tag cis: 'ubuntu-16.04:6.2.18'
 
   cmd = inspec.profile.file('duplicate_user_names_audit.sh')
   describe bash(cmd) do
@@ -246,12 +246,12 @@ control 'cis-ubuntu-14.04-6.2.18' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.19' do
+control 'cis-ubuntu-16.04-6.2.19' do
   impact  1.0
   title   '6.2.19 Ensure no duplicate group names exist (Scored)'
   desc    'Although the groupadd program will not let you create a duplicate group name, it is possible for an administrator to manually edit the /etc/group file and change the group name. If a group is assigned a duplicate group name, it will create and have access to files with the first GID for that group in /etc/group. Effectively, the GID is shared, which is a security problem.'
 
-  tag cis: 'ubuntu-14.04:6.2.19'
+  tag cis: 'ubuntu-16.04:6.2.19'
 
   cmd = inspec.profile.file('duplicate_group_names_audit.sh')
   describe bash(cmd) do
@@ -260,12 +260,12 @@ control 'cis-ubuntu-14.04-6.2.19' do
   end
 end
 
-control 'cis-ubuntu-14.04-6.2.20' do
+control 'cis-ubuntu-16.04-6.2.20' do
   impact  1.0
   title   '6.2.20 Ensure shadow group is empty (Scored)'
   desc    'The shadow group allows system programs which require access the ability to read the /etc/shadow file. No users should be assigned to the shadow group.'
 
-  tag cis: 'ubuntu-14.04:6.2.20'
+  tag cis: 'ubuntu-16.04:6.2.20'
 
   cmd = inspec.profile.file('shadow_group_audit.sh')
   describe bash(cmd) do
