@@ -1,5 +1,7 @@
 # CIS Ubuntu Linux 16.04 LTS Benchmark v1.1.0 InSpec Profile
 
+This is based on https://github.com/wunzeco/cis-ubuntu-14.04-benchmark which does not have an associated license. Use at your own risk.
+
 This example shows the implementation of an InSpec profile.
 ## Description
 
